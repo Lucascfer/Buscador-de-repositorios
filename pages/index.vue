@@ -1,14 +1,14 @@
 <script setup>
 const store = useFavoritesStore();
 const isActive = ref(false)
-const search = ref(null)
+const busca = ref('')
 const { notFound } = storeToRefs(store)
 
-function getSearch() {
-    if (this.search !== null) {
-        this.isActive === true ?
-            store.buscaUsuarios(this.search) :
-            store.buscaRepositorios(this.search)
+function getSearch(busca) {
+    if (busca) {
+        isActive.value === true ?
+            store.buscaUsuarios(busca) :
+            store.buscaRepositorios(busca)
     } else {
         store.notFound = true
     }
@@ -31,7 +31,7 @@ function closeNotFound() {
             </button>
         </div>
         <div class="search">
-            <input v-model="search" @keyup.enter="getSearch()" type="text" placeholder="Buscar..." aria-label="Search" />
+            <input v-model="busca" @keyup.enter="getSearch(busca)" type="text" placeholder="Buscar..." aria-label="Search" />
         </div>
 
         <NotFound v-if="notFound" @close="closeNotFound()" />
