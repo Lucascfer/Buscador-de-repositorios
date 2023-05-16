@@ -1,7 +1,7 @@
 <script setup>
 const store = useFavoritesStore();
 const isActive = ref(false)
-const search = ref(null)
+const search = null
 const { notFound } = storeToRefs(store)
 
 function getSearch() {
